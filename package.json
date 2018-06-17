@@ -2,17 +2,18 @@
   "name": "chatapp",
   "dependencies": {
     "express": "^4.16.3",
-    "nodemon": "^1.17.5"
+    "nodemon": "^1.17.5",
+    "socket.io": "^2.1.1"
   },
   "version": "1.0.0",
   "main": "index.js",
   "devDependencies": {},
   "scripts": {
-    "start":"node server/server.js",
+    "start": "node server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
-    "node":"9.4.0"
+    "node": "9.4.0"
   },
   "author": "",
   "license": "ISC",
