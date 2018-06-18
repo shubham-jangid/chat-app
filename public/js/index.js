@@ -11,3 +11,7 @@ socket.on("disconnect", function() {
 socket.on("newMessage", function(message) {
   console.log("new message recieved", message);
 });
+
+socket.on("fromAdmin", function(message) {
+  console.log("message from admin", message);
+});
