@@ -14,20 +14,13 @@ app.use(express.static(publicPath));
 io.on("connection", socket => {
   console.log("new user connected");
 
-  socket.emit("newMessage", {
-    from: "example.gmai.com",
-    text: "hello",
-    createdAt: 123
-  });
-
-  //   socket.emit("newEmail", {
-  //     from: "example@gmail.com",
-  //     text: "hello exampole",
-  //     createdAt: 123
-  //   });
-
-  socket.on("createMessage", newMessage => {
-    console.log("create Email", newMessage);
+  socket.on("createMessage", message => {
+    console.log("create message server recievf", message);
+    io.emit("newMessage", {
+      from: message.from,
+      text: message.text,
+      createdAt: new Date().getTime()
+    });
   });
 
   socket.on("disconnect", () => {
