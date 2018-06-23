@@ -16,13 +16,20 @@ app.use(express.static(publicPath));
 io.on("connection", socket => {
   console.log("new user connected");
 
-  socket.emit("newMessage", generateMessage("admin", "welcome to chat app 2"));
+  socket.emit("newMessage", generateMessage("admin", "welcome to chat app 2")); // this is for client
 
-  socket.broadcast.emit("newMessage", ("admin", "new user joined"));
+  socket.broadcast.emit("newMessage", ("admin", "new user joined")); // this will send the message to all other user accept the on who joined
 
   socket.on("createMessage", message => {
-    console.log("create message server recievf", message);
-    io.emit("newMessage", (message.from, message.text));
+    // this is for server
+    console.log("create message  recieved from user", message);
+    io.emit("newMessage", generateMessage(message.from, message.text));
+    // callback("This is from the server.");
+    // socket.broadcast.emit('newMessage', {
+    //   from: message.from,
+    //   text: message.text,
+    //   createdAt: new Date().getTime()
+    // });
   });
 
   socket.on("disconnect", () => {
