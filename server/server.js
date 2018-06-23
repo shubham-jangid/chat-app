@@ -18,7 +18,10 @@ io.on("connection", socket => {
 
   socket.emit("newMessage", generateMessage("admin", "welcome to chat app 2")); // this is for client
 
-  socket.broadcast.emit("newMessage", ("admin", "new user joined")); // this will send the message to all other user accept the on who joined
+  socket.broadcast.emit(
+    "newMessage",
+    generateMessage("admin", "new user joined")
+  ); // this will send the message to all other user accept the on who joined
 
   socket.on("createMessage", message => {
     // this is for server
