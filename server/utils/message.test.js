@@ -1,22 +1,27 @@
-const { generateMessage, generateLocationMessage } = require("./message");
+// var expect = require("expect");
 
-describe("generate message", () => {
-  test(" should generate correct message", () => {
-    var message = generateMessage("hii", "hello");
-    expect(message.from).toBe("hii");
-    expect(message.text).toBe("hello");
+var { generateMessage, generateLocationMessage } = require("./message");
+
+describe("generateMessage", () => {
+  test("should generate correct message object", () => {
+    var from = "Jen";
+    var text = "Some message";
+    var message = generateMessage(from, text);
+
     expect(typeof message.createdAt).toBe("number");
+    expect(message.from).toBe(from);
   });
 });
 
-describe("generate location message", () => {
-  test("should generate correct location", () => {
-    var from = "ram";
-    var latitude = 13;
-    var longitude = 15;
-    var url = "https://www.google.com/maps?q=13,15";
-
+describe("generateLocationMessage", () => {
+  test("should generate correct location object", () => {
+    var from = "Deb";
+    var latitude = 15;
+    var longitude = 19;
+    var url = "https://www.google.com/maps?q=15,19";
     var message = generateLocationMessage(from, latitude, longitude);
-    expect(message.url).toBe(url);
+
+    expect(typeof message.createdAt).toBe("number");
+    expect(message.from).toBe(from);
   });
 });
